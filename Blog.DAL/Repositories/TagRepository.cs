@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Blog.DAL.Repositories
 {
-	public class PostRepository : GenericRepository<Post>, IPostRepository
+	public class TagRepository : GenericRepository<Tag>, ITagRepository
 	{
-		public PostRepository(BlogDbContext context, ILogger logger) : base(context, logger)
+		public TagRepository(BlogDbContext context, ILogger logger) : base(context, logger)
 		{
 		}
 
-		public override async Task<IEnumerable<Post>> All()
+		public override async Task<IEnumerable<Tag>> All()
 		{
 			try
 			{
@@ -23,8 +23,8 @@ namespace Blog.DAL.Repositories
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, "{R} All function error", typeof(PostRepository));
-				return new List<Post>();
+				_logger.LogError(ex, "{R} All function error", typeof(TagRepository));
+				return new List<Tag>();
 			}
 		}
 
@@ -41,12 +41,12 @@ namespace Blog.DAL.Repositories
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, "{R} Delete function error", typeof(PostRepository));
+				_logger.LogError(ex, "{R} Delete function error", typeof(TagRepository));
 				return false;
 			}
 		}
 
-		public override async Task<bool> Update(Post entity)
+		public override async Task<bool> Update(Tag entity)
 		{
 			try
 			{
@@ -56,7 +56,7 @@ namespace Blog.DAL.Repositories
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, "{R} Update function error", typeof(PostRepository));
+				_logger.LogError(ex, "{R} Update function error", typeof(TagRepository));
 				return false;
 			}
 		}

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Blog.DAL.Interfaces
 {
-	public interface IUnitOfWork<T> : IDisposable where T : class, IEntity
+	public interface IUnitOfWork
 	{
 		IAuthorRepository Authors { get; }
 		IPostRepository Posts { get; }

@@ -51,8 +51,7 @@ namespace Blog.DAL.Repositories
 			try
 			{
 				var exist = await dbSet.Where(x => x.Id == entity.Id).FirstOrDefaultAsync();
-
-
+				dbSet.Update(entity);
 				return exist != null;
 			}
 			catch (Exception ex)

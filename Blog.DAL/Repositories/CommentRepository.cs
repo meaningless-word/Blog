@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Blog.DAL.Repositories
@@ -52,7 +51,7 @@ namespace Blog.DAL.Repositories
 			try
 			{
 				var exist = await dbSet.Where(x => x.Id == entity.Id).FirstOrDefaultAsync();
-
+				dbSet.Update(entity);
 				return exist != null;
 			}
 			catch (Exception ex)
