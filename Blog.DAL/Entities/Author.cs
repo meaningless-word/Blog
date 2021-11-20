@@ -5,6 +5,7 @@ namespace Blog.DAL.Entities
 {
 	public class Author : BaseEntity
 	{
+		[Required]
 		[MaxLength(30)]
 		public string NickName { get; set; }
 

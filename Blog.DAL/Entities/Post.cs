@@ -6,6 +6,8 @@ namespace Blog.DAL.Entities
 	public class Post : BaseEntity
 	{
 		public string Context { get; set; }
+		public DateTime Created { get; set; }
+		public DateTime Modified { get; set; }
 
 		public Guid AuthorId { get; set; }
 

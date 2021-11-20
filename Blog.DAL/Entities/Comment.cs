@@ -5,6 +5,8 @@ namespace Blog.DAL.Entities
 	public class Comment : BaseEntity
 	{
 		public string Content { get; set; }
+		public DateTime Created { get; set; }
+		public DateTime Modified { get; set; }
 
 		/// <summary>
 		/// внешний ключ
