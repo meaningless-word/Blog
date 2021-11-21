@@ -15,6 +15,7 @@ namespace Blog.BLL.DTO
 
 		public int Comments { get; set; }
 
+
 		public AuthorDTO() {}
 
 		public AuthorDTO(Guid id, string nickName)

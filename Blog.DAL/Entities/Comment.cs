@@ -19,6 +19,10 @@ namespace Blog.DAL.Entities
 		public Author Author { get; set; }
 
 		/// <summary>
+		/// внешний ключ
+		/// </summary>
+		public Guid PostId { get; set; }
+		/// <summary>
 		/// навигационное свойство - комментарий относится к конкретной статье
 		/// </summary>
 		public Post Post { get; set; }
