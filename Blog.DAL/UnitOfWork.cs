@@ -25,7 +25,6 @@ namespace Blog.DAL
 			_context = context;
 			_logger = loggerFactory.CreateLogger("logs");
 
-			Authors = new AuthorRepository(context, _logger);
 			Posts = new PostRepository(context, _logger);
 			Comments = new CommentRepository(context, _logger);
 			Tags = new TagRepository(context, _logger);

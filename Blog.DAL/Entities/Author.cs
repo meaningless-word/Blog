@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Blog.DAL.Entities
 {
-	public class Author : BaseEntity
+	public class Author : IdentityUser
 	{
 		[Required]
 		[MaxLength(30)]

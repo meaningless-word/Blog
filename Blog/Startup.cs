@@ -1,5 +1,6 @@
 using Blog.BLL.MappingProfiles;
 using Blog.DAL;
+using Blog.DAL.Entities;
 using Blog.DAL.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,7 +26,7 @@ namespace Blog
 		{
 			services.AddDbContext<BlogDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
-
+			
 			var assembly = Assembly.GetAssembly(typeof(AuthorsProfile));
 			services.AddAutoMapper(assembly);
 
