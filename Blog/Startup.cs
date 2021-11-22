@@ -1,6 +1,8 @@
+using System.Reflection;
+using Blog.BLL;
 using Blog.BLL.MappingProfiles;
+using Blog.BLL.Services;
 using Blog.DAL;
-using Blog.DAL.Entities;
 using Blog.DAL.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Reflection;
 
 namespace Blog
 {
@@ -26,8 +27,10 @@ namespace Blog
 		{
 			services.AddDbContext<BlogDbContext>(options => options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+			services.AddScoped<ITagService, TagService>();
 			
-			var assembly = Assembly.GetAssembly(typeof(AuthorsProfile));
+			var assembly = Assembly.GetAssembly(typeof(TagsProfile));
 			services.AddAutoMapper(assembly);
 
 			services.AddControllersWithViews();
