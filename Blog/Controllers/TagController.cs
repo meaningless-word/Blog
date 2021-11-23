@@ -43,10 +43,21 @@ namespace Blog.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Delete(Guid id)
+		public async Task<IActionResult> Delete(Guid id)
 		{
-			//_tagService.Delete(id);
-			return View();
+			var tag = await _tagService.GetById(id);
+			if (tag == null)
+			{
+				return NotFound();
+			}
+			return View(tag);
+		}
+
+		[HttpPost]
+		public IActionResult DeletePost(Guid id)
+		{
+			_tagService.Delete(id);
+			return RedirectToAction("Index");
 		}
 	}
 }

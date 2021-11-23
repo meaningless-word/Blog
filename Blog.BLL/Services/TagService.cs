@@ -20,7 +20,6 @@ namespace Blog.BLL.Services
 			_mapper = mapper;
 		}
 			
-			
 		public async Task<IEnumerable<TagDTO>> GetAll()
 		{
 			var tags = await _unitOfWork.Tags.All();
@@ -36,15 +35,22 @@ namespace Blog.BLL.Services
 
 		public async Task<bool> Delete(Guid id)
 		{
-			var _tags = await _unitOfWork.Tags.Find(x => x.Id == id);
-			var _tag = _tags.FirstOrDefault();
+			var tag = await _unitOfWork.Tags.GetById(id);
 
-			if (_tag == null)
+			if (tag == null)
 			{
 				return false;
 			}
 
-			return await _unitOfWork.Tags.Delete(id);
+			var result = await _unitOfWork.Tags.Delete(id);
+			await _unitOfWork.CommitAsync();
+			return result;
+		}
+
+		public async Task<TagDTO> GetById(Guid id)
+		{
+			var tag = await _unitOfWork.Tags.GetById(id);
+			return _mapper.Map<Tag, TagDTO>(tag);
 		}
 	}
 }
