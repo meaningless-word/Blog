@@ -1,6 +1,6 @@
 ﻿@model Blog.BLL.DTO.TagDTO
 
-<form method="post" asp-action="DeletePost">
+<form method="post" asp-action="Delete">
     <input asp-for="Id" hidden />
     <div class="border p-3">
         <div class="form-group row">
@@ -13,7 +13,7 @@
                         <label asp-for="Name"></label>
                     </div>
                     <div class="col-6">
-                        @Model.Name
+                      <input asp-for="Name" class="form-control" disabled />
                     </div>
                 </div>
                 <div class="from-group row">

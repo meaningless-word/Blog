@@ -9,7 +9,7 @@ namespace Blog.BLL
 	{
 		Task<IEnumerable<TagDTO>> GetAll();
 		void Create(TagDTO tag);
-		Task<bool> Delete(Guid id);
-		Task<TagDTO> GetById(Guid id);
+		bool Delete(Guid id);
+		TagDTO GetById(Guid id);
 	}
 }

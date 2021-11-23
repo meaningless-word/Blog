@@ -43,9 +43,9 @@ namespace Blog.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> Delete(Guid id)
+		public IActionResult Delete(Guid id)
 		{
-			var tag = await _tagService.GetById(id);
+			var tag = _tagService.GetById(id);
 			if (tag == null)
 			{
 				return NotFound();
@@ -54,10 +54,12 @@ namespace Blog.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult DeletePost(Guid id)
+		public IActionResult Delete(TagDTO tag)
 		{
-			_tagService.Delete(id);
+			_tagService.Delete(tag.Id);
 			return RedirectToAction("Index");
 		}
+
+		
 	}
 }

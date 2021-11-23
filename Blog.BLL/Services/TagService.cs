@@ -33,24 +33,25 @@ namespace Blog.BLL.Services
 			_unitOfWork.CommitAsync();
 		}
 
-		public async Task<bool> Delete(Guid id)
+		public bool Delete(Guid id)
 		{
-			var tag = await _unitOfWork.Tags.GetById(id);
+			var tag = _unitOfWork.Tags.GetById(id);
 
 			if (tag == null)
 			{
 				return false;
 			}
 
-			var result = await _unitOfWork.Tags.Delete(id);
-			await _unitOfWork.CommitAsync();
-			return result;
+			var result = _unitOfWork.Tags.Delete(id);
+			_unitOfWork.CommitAsync();
+			return result.Result;
 		}
 
-		public async Task<TagDTO> GetById(Guid id)
+		public TagDTO GetById(Guid id)
 		{
-			var tag = await _unitOfWork.Tags.GetById(id);
-			return _mapper.Map<Tag, TagDTO>(tag);
+			var tag = _unitOfWork.Tags.GetById(id);
+			return _mapper.Map<Tag, TagDTO>(tag.Result);
 		}
+
 	}
 }
