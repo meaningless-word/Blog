@@ -4,7 +4,6 @@ using Blog.DAL.Entities;
 using Blog.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Blog.BLL.Services

@@ -10,9 +10,13 @@ namespace Blog.BLL.DTO
 		[Required]
 		[MaxLength(30)]
 		public string NickName { get; set; }
-
+		/// <summary>
+		/// количество публикаций
+		/// </summary>
 		public int Posts { get; set; }
-
+		/// <summary>
+		/// количество комментариев
+		/// </summary>
 		public int Comments { get; set; }
 
 
