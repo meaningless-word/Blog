@@ -28,6 +28,7 @@ namespace Blog.DAL
 			Posts = new PostRepository(context, _logger);
 			Comments = new CommentRepository(context, _logger);
 			Tags = new TagRepository(context, _logger);
+			Authors = new AuthorRepository(context, _logger);
 		}
 
 		public async Task CommitAsync()

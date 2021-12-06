@@ -11,7 +11,7 @@ namespace Blog.DAL.Entities
 		/// <summary>
 		/// внешний ключ
 		/// </summary>
-		public Guid AuthorId { get; set; }
+		public string AuthorId { get; set; }
 
 		/// <summary>
 		/// навигационное свойство - у комментария один автор

@@ -8,8 +8,7 @@ namespace Blog.BLL
 	{
 		public MappingProfile()
 		{
-			CreateMap<Tag, TagDTO>()
-				.ForMember(a => a.Name, m => m.MapFrom(src => src.Name));
+			CreateMap<Tag, TagDTO>();
 			CreateMap<TagDTO, Tag>();
 			CreateMap<Author, AuthorDTO>();
 			CreateMap<AuthorDTO, Author>();

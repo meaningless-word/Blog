@@ -9,7 +9,7 @@ namespace Blog.DAL.Entities
 		public DateTime Created { get; set; }
 		public DateTime Modified { get; set; }
 
-		public Guid AuthorId { get; set; }
+		public string AuthorId { get; set; }
 
 		/// <summary>
 		/// навигационное свойство - у публикации один автор

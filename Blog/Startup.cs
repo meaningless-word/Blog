@@ -28,7 +28,8 @@ namespace Blog
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 			services.AddScoped<ITagService, TagService>();
-			
+			services.AddScoped<IAuthorService, AuthorService>();
+
 			services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfile)));
 
 			services.AddControllersWithViews();
