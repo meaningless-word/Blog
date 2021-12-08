@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Blog.DAL.Entities
 {
-	public class Author : IdentityUser
+	public class Author : BaseEntity
 	{
 		[Required]
 		[MaxLength(30)]
@@ -19,5 +19,10 @@ namespace Blog.DAL.Entities
 		/// навигационное свойство - все публикации автора
 		/// </summary>
 		public List<Post> Posts { get; set; } = new List<Post>();
+
+		[ForeignKey("ApplicationUser")]
+		public string ApplicationUserId { get; set; }
+
+		public ApplicationUser ApplicationUser { get; set; }
 	}
 }

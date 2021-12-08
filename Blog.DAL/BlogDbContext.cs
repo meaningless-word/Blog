@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Blog.DAL
 {
-	public class BlogDbContext : IdentityDbContext<Author>
+	public class BlogDbContext : IdentityDbContext<ApplicationUser>
 	{
 		public BlogDbContext(DbContextOptions<BlogDbContext> options) : base(options)
 		{
