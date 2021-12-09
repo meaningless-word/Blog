@@ -26,7 +26,9 @@ namespace Blog.BLL.Services
 
 		public void Create(AuthorDTO author)
 		{
-			throw new NotImplementedException();
+			Author _author = _mapper.Map<AuthorDTO, Author>(author);
+			_unitOfWork.Authors.Add(_author);
+			_unitOfWork.CommitAsync();
 		}
 
 		public bool Delete(Guid id)

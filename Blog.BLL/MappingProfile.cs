@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Blog.BLL.DTO;
 using Blog.DAL.Entities;
+using System.Collections.Generic;
 
 namespace Blog.BLL
 {
@@ -10,8 +11,13 @@ namespace Blog.BLL
 		{
 			CreateMap<Tag, TagDTO>();
 			CreateMap<TagDTO, Tag>();
-			CreateMap<Author, AuthorDTO>();
-			CreateMap<AuthorDTO, Author>();
+			CreateMap<Author, AuthorDTO>()
+				.ForMember(a => a.Comments, map => map.MapFrom(src => src.Comments.Count))
+				.ForMember(a => a.Posts, map => map.MapFrom(src => src.Posts.Count));
+			CreateMap<AuthorDTO, Author>()
+				.ForMember(a => a.NickName, map => map.MapFrom(src => src.NickName))
+				.ForMember(a => a.Posts, map => map.MapFrom(src => new List<Post>()))
+				.ForMember(a => a.Comments, map => map.MapFrom(src => new List<Comment>()));
 		}
 	}
 }

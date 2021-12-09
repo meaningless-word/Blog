@@ -1,6 +1,8 @@
 ﻿using Blog.BLL;
+using Blog.BLL.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Blog.Controllers
@@ -19,8 +21,26 @@ namespace Blog.Controllers
 		[HttpGet]
 		public async Task<IActionResult> IndexAsync()
 		{
-			var authors = await _authorService.GetAll();
+			IEnumerable<AuthorDTO> authors = await _authorService.GetAll();
+			return View(authors);
+		}
+
+		[HttpGet]
+		public IActionResult Create()
+		{
 			return View();
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult Create(AuthorDTO item)
+		{
+			if (ModelState.IsValid)
+			{
+				_authorService.Create(item);
+				return RedirectToAction("Index");
+			}
+			return View(item);
 		}
 	}
 }

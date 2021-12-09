@@ -19,8 +19,8 @@ namespace Blog.BLL.DTO
 
 		public TagDTO(Guid id, string name)
 		{
-			this.Id = id;
-			this.Name = name;
+			Id = id;
+			Name = name;
 		}
 	}
 }

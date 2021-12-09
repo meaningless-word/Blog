@@ -24,8 +24,8 @@ namespace Blog.BLL.DTO
 
 		public AuthorDTO(Guid id, string nickName)
 		{
-			this.Id = id;
-			this.NickName = nickName;
+			Id = id;
+			NickName = nickName;
 		}
 	}
 }

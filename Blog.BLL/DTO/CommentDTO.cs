@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blog.BLL.DTO
 {
@@ -19,12 +15,12 @@ namespace Blog.BLL.DTO
 
 		public CommentDTO(Guid id, string content, DateTime created, DateTime modified, Guid authorId, Guid postId)
 		{
-			this.Id = id;
-			this.Content = content;
-			this.Created = created;
-			this.Modified = modified;
-			this.AuthorId = authorId;
-			this.PostId = postId;
+			Id = id;
+			Content = content;
+			Created = created;
+			Modified = modified;
+			AuthorId = authorId;
+			PostId = postId;
 		}
 	}
 }
