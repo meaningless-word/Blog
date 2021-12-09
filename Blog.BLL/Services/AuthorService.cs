@@ -24,11 +24,16 @@ namespace Blog.BLL.Services
 			return _mapper.Map<IEnumerable<Author>, IEnumerable<AuthorDTO>>(authors);
 		}
 
-		public void Create(AuthorDTO author)
+		public bool Create(AuthorDTO author)
 		{
-			Author _author = _mapper.Map<AuthorDTO, Author>(author);
-			_unitOfWork.Authors.Add(_author);
-			_unitOfWork.CommitAsync();
+			if (_unitOfWork.Authors.Find(x => x.NickName == author.NickName) == null)
+			{
+				Author _author = _mapper.Map<AuthorDTO, Author>(author);
+				_unitOfWork.Authors.Add(_author);
+				_unitOfWork.CommitAsync();
+				return true;
+			}
+			return false;
 		}
 
 		public bool Delete(Guid id)

@@ -37,8 +37,9 @@ namespace Blog.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				_authorService.Create(item);
-				return RedirectToAction("Index");
+				if(_authorService.Create(item))
+				  return RedirectToAction("Index");
+				ModelState.AddModelError("NickName", "Такая запись уже существует");
 			}
 			return View(item);
 		}

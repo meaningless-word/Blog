@@ -7,7 +7,7 @@ namespace Blog.BLL.DTO
 	{
 		public Guid Id { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Не указан ник")]
 		[MaxLength(30)]
 		public string NickName { get; set; }
 		/// <summary>

@@ -8,7 +8,7 @@ namespace Blog.BLL
 	public interface IAuthorService
 	{
 		Task<IEnumerable<AuthorDTO>> GetAll();
-		void Create(AuthorDTO author);
+		bool Create(AuthorDTO author);
 		bool Delete(Guid id);
 		bool Update(AuthorDTO author);
 		AuthorDTO GetById(Guid id);
