@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Blog.BLL.DTO;
+using Blog.BLL.Interfaces;
 using Blog.DAL.Entities;
 using Blog.DAL.Interfaces;
 using System;
@@ -18,6 +19,7 @@ namespace Blog.BLL.Services
 			_unitOfWork = unitOfWork;
 			_mapper = mapper;
 		}
+
 		public async Task<IEnumerable<AuthorDTO>> GetAll()
 		{
 			var authors = await _unitOfWork.Authors.All();

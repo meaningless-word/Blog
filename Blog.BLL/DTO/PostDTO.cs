@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Blog.BLL.DTO
 {
@@ -8,18 +9,9 @@ namespace Blog.BLL.DTO
 		public string Context { get; set; }
 		public DateTime Created { get; set; }
 		public DateTime Modified { get; set; }
-
 		public Guid AuthorId { get; set; }
-
-
-		public PostDTO() {}
-
-		public PostDTO(Guid id, string context, DateTime created, DateTime modified)
-		{
-			Id = id;
-			Context = context;
-			Created = created;
-			Modified = modified;
-		}
+		public string AuthorNickName { get; set; }
+		public List<CommentDTO> Comments { get; set; };
+		public List<TagDTO> Tags { get; set; };
 	}
 }

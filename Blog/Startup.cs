@@ -1,4 +1,5 @@
 using Blog.BLL;
+using Blog.BLL.Interfaces;
 using Blog.BLL.Services;
 using Blog.DAL;
 using Blog.DAL.Interfaces;
@@ -29,6 +30,7 @@ namespace Blog
 
 			services.AddScoped<ITagService, TagService>();
 			services.AddScoped<IAuthorService, AuthorService>();
+			services.AddScoped<IPostService, PostService>();
 
 			services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfile)));
 

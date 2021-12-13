@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Blog.BLL.DTO;
 
-namespace Blog.BLL
+namespace Blog.BLL.Interfaces
 {
 	public interface ITagService
 	{

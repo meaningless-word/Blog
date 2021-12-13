@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using Blog.BLL;
-using Blog.BLL.DTO;
+﻿using Blog.BLL.DTO;
+using Blog.BLL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
 namespace Blog.Controllers
 {

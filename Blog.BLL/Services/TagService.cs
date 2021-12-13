@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Blog.BLL.DTO;
+using Blog.BLL.Interfaces;
 using Blog.DAL.Entities;
 using Blog.DAL.Interfaces;
 using System;
