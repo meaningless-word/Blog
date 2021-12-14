@@ -27,5 +27,14 @@ namespace Blog.BLL.Services
 			var posts = await _unitOfWork.Posts.All();
 			return _mapper.Map<IEnumerable<Post>, IEnumerable<PostDTO>> (posts);
 		}
+
+		public void Create(PostDTO post)
+		{
+			var _post = _mapper.Map<PostDTO, Post>(post);
+			_post.Created = DateTime.Now;
+			_post.Modified = DateTime.Now;
+			_unitOfWork.Posts.Add(_post);
+			_unitOfWork.CommitAsync();
+		}
 	}
 }

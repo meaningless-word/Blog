@@ -7,5 +7,6 @@ namespace Blog.BLL.Interfaces
 	public interface IPostService
 	{
 		Task<IEnumerable<PostDTO>> GetAll();
+		void Create(PostDTO post);
 	}
 }

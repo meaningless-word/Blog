@@ -22,6 +22,7 @@ namespace Blog.BLL
 				.ForMember(a => a.AuthorNickName, map => map.MapFrom(src => src.Author.NickName))
 				.ForMember(a => a.Comments, map => map.MapFrom(src => src.Comments))
 				.ForMember(a => a.Tags, map => map.MapFrom(src => src.Tags));
+			CreateMap<PostDTO, Post>();
 		}
 	}
 }

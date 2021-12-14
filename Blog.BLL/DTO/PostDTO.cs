@@ -11,7 +11,7 @@ namespace Blog.BLL.DTO
 		public DateTime Modified { get; set; }
 		public Guid AuthorId { get; set; }
 		public string AuthorNickName { get; set; }
-		public List<CommentDTO> Comments { get; set; };
-		public List<TagDTO> Tags { get; set; };
+		public List<CommentDTO> Comments { get; set; } = new List<CommentDTO>();
+		public List<TagDTO> Tags { get; set; } = new List<TagDTO>();
 	}
 }

@@ -1,0 +1,34 @@
+﻿@model Blog.BLL.DTO.PostDTO
+
+<form method="post" asp-action="Create">
+  <input hidden asp-for="AuthorId" />
+  <div class="border p-3">
+    <div class="form-group row">
+      <h2 class="text-black-50 pl-3">Добавить пост</h2>
+    </div>
+    <div class="row">
+      <textarea class="form-control " asp-for="Context"></textarea>
+    </div>
+    <div class="form-group form-check">
+      @foreach (Blog.BLL.DTO.TagDTO tag in ViewBag.Tags)
+      {
+        <div class="form-check">
+          <label class="form-check-label" for="">
+            <input type="checkbox" class="form-check-input" name="selectedTags" id="@tag.Id" value="@tag.Id" />
+            @tag.Name
+          </label>
+        </div>
+      }
+    </div>
+    <div class="form-group row">
+      <div class="col-6 offset-3 row">
+        <div class="col">
+          <input type="submit" class="btn btn-info w-75" value="Сохранить" />
+        </div>
+        <div class="col">
+          <a asp-action="Index" class="btn btn-danger w-75">Назад</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
