@@ -4,16 +4,16 @@ namespace Blog.BLL.DTO
 {
 	public class CommentDTO
 	{
-		public Guid Id { get; set; }
+		public string Id { get; set; }
 		public string Content { get; set; }
 		public DateTime Created { get; set; }
 		public DateTime Modified { get; set; }
-		public Guid AuthorId { get; set; }
-		public Guid PostId { get; set; }
+		public string AuthorId { get; set; }
+		public string PostId { get; set; }
 
 		public CommentDTO() {}
 
-		public CommentDTO(Guid id, string content, DateTime created, DateTime modified, Guid authorId, Guid postId)
+		public CommentDTO(string id, string content, DateTime created, DateTime modified, string authorId, string postId)
 		{
 			Id = id;
 			Content = content;
