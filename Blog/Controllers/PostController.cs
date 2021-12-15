@@ -12,12 +12,14 @@ namespace Blog.Controllers
 	{
 		private IPostService _postService;
 		private ITagService _tagService;
+		private IAuthorService _authorService;
 		private ILogger<PostController> _logger;
 
-		public PostController(IPostService postService, ITagService tagService, ILogger<PostController> logger)
+		public PostController(IPostService postService, ITagService tagService, IAuthorService authorService, ILogger<PostController> logger)
 		{
 			_postService = postService;
 			_tagService = tagService;
+			_authorService = authorService;
 			_logger = logger;
 		}
 
@@ -31,7 +33,7 @@ namespace Blog.Controllers
 		[HttpGet]
 		public IActionResult Create()
 		{
-			var post = new PostDTO() { AuthorId = new Guid("1869811F-DD39-4C6B-B74F-2452C2848578") };
+			var post = new PostDTO() { AuthorId = _authorService.GetById(new Guid("1869811F-DD39-4C6B-B74F-2452C2848578")).Id };
 			ViewBag.Tags = _tagService.GetAll().Result;
 			return View(post);
 		}

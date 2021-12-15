@@ -45,7 +45,7 @@ namespace Blog.BLL.Services
 
 		public AuthorDTO GetById(Guid id)
 		{
-			throw new NotImplementedException();
+			return _mapper.Map<AuthorDTO>(_unitOfWork.Authors.GetById(id).Result);
 		}
 
 		public bool Update(AuthorDTO author)
