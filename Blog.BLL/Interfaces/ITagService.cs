@@ -1,15 +1,14 @@
-﻿using System;
+﻿using Blog.BLL.DTO;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Blog.BLL.DTO;
 
 namespace Blog.BLL.Interfaces
 {
 	public interface ITagService
 	{
-		Task<IEnumerable<TagDTO>> GetAll();
+		IEnumerable<TagDTO> GetAll();
 		void Create(TagDTO tag);
-		bool Delete(Guid id);
-		TagDTO GetById(Guid id);
+		bool Delete(string id);
+		TagDTO GetById(string id);
+		bool Update(TagDTO tag);
 	}
 }

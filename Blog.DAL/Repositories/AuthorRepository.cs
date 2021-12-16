@@ -1,11 +1,9 @@
 ﻿using Blog.DAL.Entities;
 using Blog.DAL.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Blog.DAL.Repositories
 {
@@ -15,11 +13,11 @@ namespace Blog.DAL.Repositories
 		{
 		}
 
-		public override async Task<IEnumerable<Author>> All()
+		public override IEnumerable<Author> All()
 		{
 			try
 			{
-				return await dbSet.ToListAsync();
+				return dbSet.ToList();
 			}
 			catch (Exception ex)
 			{
@@ -28,29 +26,11 @@ namespace Blog.DAL.Repositories
 			}
 		}
 
-		public async Task<bool> Delete(string nickName)
+		public override bool Update(Author entity)
 		{
 			try
 			{
-				var exist = await dbSet.Where(x => x.NickName == nickName).FirstOrDefaultAsync();
-
-				if (exist == null) return false;
-
-				dbSet.Remove(exist);
-				return true;
-			}
-			catch (Exception ex)
-			{
-				_logger.LogError(ex, "{R} Delete function error", typeof(AuthorRepository));
-				return false;
-			}
-		}
-
-		public override async Task<bool> Update(Author entity)
-		{
-			try
-			{
-				var exist = await dbSet.Where(x => x.Id == entity.Id).FirstOrDefaultAsync();
+				var exist = dbSet.Where(x => x.Id == entity.Id).FirstOrDefault();
 				dbSet.Update(entity);
 				return exist != null;
 			}

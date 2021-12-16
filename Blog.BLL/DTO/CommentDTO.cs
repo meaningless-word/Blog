@@ -10,17 +10,5 @@ namespace Blog.BLL.DTO
 		public DateTime Modified { get; set; }
 		public string AuthorId { get; set; }
 		public string PostId { get; set; }
-
-		public CommentDTO() {}
-
-		public CommentDTO(string id, string content, DateTime created, DateTime modified, string authorId, string postId)
-		{
-			Id = id;
-			Content = content;
-			Created = created;
-			Modified = modified;
-			AuthorId = authorId;
-			PostId = postId;
-		}
 	}
 }

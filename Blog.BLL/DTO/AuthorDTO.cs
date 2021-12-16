@@ -18,14 +18,5 @@ namespace Blog.BLL.DTO
 		/// количество комментариев
 		/// </summary>
 		public int Comments { get; set; }
-
-
-		public AuthorDTO() {}
-
-		public AuthorDTO(string id, string nickName)
-		{
-			Id = id;
-			NickName = nickName;
-		}
 	}
 }

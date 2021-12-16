@@ -1,9 +1,10 @@
 ﻿@model Blog.BLL.DTO.TagDTO
 
-<form method="post" asp-action="Create">
+<form method="post" asp-action="Update">
+  <input hidden asp-for="Id" />
   <div class="border p-3">
     <div class="form-group row">
-      <h2 class="text-black-50 pl-3">создавай</h2>
+      <h2 class="text-black-50 pl-3">меняй</h2>
     </div>
     <div class="row">
       <div class="col-12">
@@ -21,7 +22,7 @@
         <div class="from-group row">
           <div class="col-8 offset-2 row">
             <div class="col">
-              <input type="submit" class="btn btn-info w-75" value="Create" />
+              <input type="submit" class="btn btn-info w-75" value="Update" />
             </div>
             <div class="col">
               <a asp-action="Index" class="btn btn-danger w-75">Back</a>

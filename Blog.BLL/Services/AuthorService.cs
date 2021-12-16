@@ -5,7 +5,6 @@ using Blog.DAL.Entities;
 using Blog.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Blog.BLL.Services
 {
@@ -20,9 +19,9 @@ namespace Blog.BLL.Services
 			_mapper = mapper;
 		}
 
-		public async Task<IEnumerable<AuthorDTO>> GetAll()
+		public IEnumerable<AuthorDTO> GetAll()
 		{
-			var authors = await _unitOfWork.Authors.All();
+			var authors = _unitOfWork.Authors.All();
 			return _mapper.Map<IEnumerable<Author>, IEnumerable<AuthorDTO>>(authors);
 		}
 
@@ -32,20 +31,20 @@ namespace Blog.BLL.Services
 			{
 				Author _author = _mapper.Map<AuthorDTO, Author>(author);
 				_unitOfWork.Authors.Add(_author);
-				_unitOfWork.CommitAsync();
+				_unitOfWork.Commit();
 				return true;
 			}
 			return false;
 		}
 
-		public bool Delete(Guid id)
+		public bool Delete(string id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public AuthorDTO GetById(Guid id)
+		public AuthorDTO GetById(string id)
 		{
-			return _mapper.Map<AuthorDTO>(_unitOfWork.Authors.GetById(id).Result);
+			return _mapper.Map<AuthorDTO>(_unitOfWork.Authors.GetById(id));
 		}
 
 		public bool Update(AuthorDTO author)

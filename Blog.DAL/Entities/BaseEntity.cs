@@ -8,9 +8,9 @@ namespace Blog.DAL.Entities
 	{
 		public BaseEntity()
 		{
-			Id = Guid.NewGuid();
+			Id = Guid.NewGuid().ToString().ToUpper();
 		}
 		[Key]
-		public Guid Id { get; set; }
+		public string Id { get; set; }
 	}
 }

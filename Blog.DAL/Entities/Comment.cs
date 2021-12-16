@@ -21,7 +21,7 @@ namespace Blog.DAL.Entities
 		/// <summary>
 		/// внешний ключ
 		/// </summary>
-		public Guid PostId { get; set; }
+		public string PostId { get; set; }
 		/// <summary>
 		/// навигационное свойство - комментарий относится к конкретной статье
 		/// </summary>
