@@ -41,7 +41,8 @@ namespace Blog.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				post.Tags.AddRange(_tagService.GetAll().Where(x => selectedTags.Contains(x.Id)).Select(x => x));
+				//post.Tags.AddRange(_tagService.GetAll().Where(x => selectedTags.Contains(x.Id)).Select(x => x));
+				post.TagIds = selectedTags;
 				_postService.Create(post);
 				return RedirectToAction("Index");
 			}

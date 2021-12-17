@@ -5,6 +5,7 @@ using Blog.DAL.Entities;
 using Blog.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Blog.BLL.Services
 {
@@ -28,12 +29,8 @@ namespace Blog.BLL.Services
 		public void Create(PostDTO post)
 		{
 			var _post = _mapper.Map<PostDTO, Post>(post);
+			_post.Tags.AddRange(_unitOfWork.Tags.All().Where(x => post.TagIds.Contains(x.Id)).Select(x => x));
 
-			//Post _post = new Post() { Context = post.Context };
-			//_post.Tags = new List<Tag>();
-			//_post.Tags.AddRange(_unitOfWork.Tags.All());
-			
-			
 			_post.Created = DateTime.Now;
 			_post.Modified = DateTime.Now;
 

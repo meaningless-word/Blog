@@ -3,7 +3,6 @@ using Blog.BLL.DTO;
 using Blog.DAL.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Blog.BLL
 {
@@ -28,7 +27,7 @@ namespace Blog.BLL
 				.ForMember(a => a.Tags, map => map.MapFrom(src => src.Tags));
 			CreateMap<PostDTO, Post>()
 				.ForMember(a => a.Id, map => map.MapFrom(src => src.Id ?? Guid.NewGuid().ToString().ToUpper()))
-				.ForMember(a => a.Tags, map => map.MapFrom(src => src.Tags));
+				.ForMember(a => a.Tags, map => map.MapFrom(src => new List<Tag>()));
 		}
 	}
 }

@@ -13,5 +13,6 @@ namespace Blog.BLL.DTO
 		public string AuthorNickName { get; set; }
 		public List<CommentDTO> Comments { get; set; } = new List<CommentDTO>();
 		public List<TagDTO> Tags { get; set; } = new List<TagDTO>();
+		public string[] TagIds { get; set; }
 	}
 }
