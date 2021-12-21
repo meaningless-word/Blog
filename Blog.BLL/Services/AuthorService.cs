@@ -22,7 +22,8 @@ namespace Blog.BLL.Services
 		public IEnumerable<AuthorDTO> GetAll()
 		{
 			var authors = _unitOfWork.Authors.All();
-			return _mapper.Map<IEnumerable<Author>, IEnumerable<AuthorDTO>>(authors);
+			var mapped = _mapper.Map<IEnumerable<Author>, IEnumerable<AuthorDTO>>(authors);
+			return mapped;
 		}
 
 		public bool Create(AuthorDTO author)

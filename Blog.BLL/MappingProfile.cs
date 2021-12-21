@@ -28,6 +28,8 @@ namespace Blog.BLL
 			CreateMap<PostDTO, Post>()
 				.ForMember(a => a.Id, map => map.MapFrom(src => src.Id ?? Guid.NewGuid().ToString().ToUpper()))
 				.ForMember(a => a.Tags, map => map.MapFrom(src => new List<Tag>()));
+			CreateMap<Comment, CommentDTO>();
+			CreateMap<CommentDTO, Comment>();
 		}
 	}
 }

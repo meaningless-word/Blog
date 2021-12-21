@@ -18,7 +18,7 @@ namespace Blog.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult IndexAsync()
+		public IActionResult Index()
 		{
 			IEnumerable<AuthorDTO> authors = _authorService.GetAll();
 			return View(authors);
