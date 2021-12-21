@@ -5,6 +5,7 @@ using Blog.DAL.Entities;
 using Blog.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Blog.BLL.Services
 {
@@ -28,7 +29,8 @@ namespace Blog.BLL.Services
 
 		public bool Create(AuthorDTO author)
 		{
-			if (_unitOfWork.Authors.Find(x => x.NickName == author.NickName) == null)
+			var finded = _unitOfWork.Authors.Find(x => x.NickName == author.NickName).ToList();
+			if (finded.Count == 0)
 			{
 				Author _author = _mapper.Map<AuthorDTO, Author>(author);
 				_unitOfWork.Authors.Add(_author);

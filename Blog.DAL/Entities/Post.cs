@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Blog.DAL.Entities
 {
@@ -9,6 +10,7 @@ namespace Blog.DAL.Entities
 		public DateTime Created { get; set; }
 		public DateTime Modified { get; set; }
 
+		[MaxLength(36)]
 		public string AuthorId { get; set; }
 
 		/// <summary>

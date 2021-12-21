@@ -25,7 +25,7 @@
 				{
           <tr>
             <td>@item.NickName</td>
-            <td><a asp-controller="Post" asp-action="Index" asp-route-Id="@item.Id" class="text-md-center">@item.Posts.ToString()</a></td>
+            <td><a asp-controller="Post" asp-action="Index" asp-route-authorId="@item.Id" class="text-md-center">@item.Posts.ToString()</a></td>
             <td>@item.Comments.ToString()</td>
           </tr>
 				}

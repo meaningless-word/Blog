@@ -7,7 +7,7 @@
       <h2 class="text-black-50 pl-3">Добавить пост</h2>
     </div>
     <div class="row">
-      <textarea class="form-control " asp-for="Context"></textarea>
+      <textarea class="form-control" asp-for="Context" rows="5"></textarea>
     </div>
     <div class="form-group form-check">
       @foreach (Blog.BLL.DTO.TagDTO tag in ViewBag.Tags)

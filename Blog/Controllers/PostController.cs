@@ -21,9 +21,11 @@ namespace Blog.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Index()
+		[Route("Post/{authorId}")]
+		public IActionResult Index(string authorId)
 		{
-			var posts = _postService.GetAll();
+			var posts = _postService.GetPostsByAuthorId(authorId);
+			ViewData["authorId"] = authorId;
 			return View(posts);
 		}
 

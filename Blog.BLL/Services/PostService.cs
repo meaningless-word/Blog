@@ -23,7 +23,13 @@ namespace Blog.BLL.Services
 		public IEnumerable<PostDTO> GetAll()
 		{
 			var posts = _unitOfWork.Posts.All();
-			return _mapper.Map<IEnumerable<Post>, IEnumerable<PostDTO>> (posts);
+			return _mapper.Map<IEnumerable<PostDTO>> (posts);
+		}
+
+		public IEnumerable<PostDTO> GetPostsByAuthorId(string id)
+		{
+			var posts = _unitOfWork.Posts.Find(x => x.AuthorId == id);
+			return _mapper.Map<IEnumerable<PostDTO>>(posts);
 		}
 
 		public void Create(PostDTO post)

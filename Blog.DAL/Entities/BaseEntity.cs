@@ -11,6 +11,7 @@ namespace Blog.DAL.Entities
 			Id = Guid.NewGuid().ToString().ToUpper();
 		}
 		[Key]
+		[MaxLength(36)]
 		public string Id { get; set; }
 	}
 }
