@@ -3,7 +3,6 @@ using Blog.BLL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Blog.Controllers
 {
@@ -19,9 +18,9 @@ namespace Blog.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> IndexAsync()
+		public IActionResult Index()
 		{
-			IEnumerable<AuthorDTO> authors = await _authorService.GetAll();
+			IEnumerable<AuthorDTO> authors = _authorService.GetAll();
 			return View(authors);
 		}
 

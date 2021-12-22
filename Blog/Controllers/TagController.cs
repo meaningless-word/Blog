@@ -2,8 +2,6 @@
 using Blog.BLL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
 
 namespace Blog.Controllers
 {
@@ -19,9 +17,9 @@ namespace Blog.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> Index()
+		public IActionResult Index()
 		{
-			var tags = await _tagService.GetAll();
+			var tags = _tagService.GetAll();
 			return View(tags);
 		}
 
@@ -43,7 +41,7 @@ namespace Blog.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Delete(Guid id)
+		public IActionResult Delete(string id)
 		{
 			var tag = _tagService.GetById(id);
 			if (tag == null)
@@ -60,6 +58,26 @@ namespace Blog.Controllers
 			return RedirectToAction("Index");
 		}
 
-		
+		[HttpGet]
+		public IActionResult Update(string id)
+		{
+			var tag = _tagService.GetById(id);
+			if (tag == null)
+			{
+				return NotFound();
+			}
+			return View(tag);
+		}
+
+		[HttpPost]
+		public IActionResult Update(TagDTO tag)
+		{
+			if (ModelState.IsValid)
+			{
+				_tagService.Update(tag);
+				return RedirectToAction("Index");
+			}
+			return View(tag);
+		}
 	}
 }

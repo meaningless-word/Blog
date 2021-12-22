@@ -22,7 +22,7 @@
             <td>@item.Name</td>
             <td>
               <div class="w-100 btn-group" role="group">
-                <a asp-controller="Tag" asp-action="Update" asp-role-Id="@item.Id" class="btn btn-primary mx-1">Update</a>
+                <a asp-controller="Tag" asp-action="Update" asp-route-Id="@item.Id" class="btn btn-primary mx-1">Update</a>
                 <a asp-controller="Tag" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger mx-1">Delete</a>
               </div>
             </td>

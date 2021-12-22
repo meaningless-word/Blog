@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Blog.Controllers
 {
@@ -12,39 +11,40 @@ namespace Blog.Controllers
 	{
 		private IPostService _postService;
 		private ITagService _tagService;
-		private IAuthorService _authorService;
 		private ILogger<PostController> _logger;
 
-		public PostController(IPostService postService, ITagService tagService, IAuthorService authorService, ILogger<PostController> logger)
+		public PostController(IPostService postService, ITagService tagService, ILogger<PostController> logger)
 		{
 			_postService = postService;
 			_tagService = tagService;
-			_authorService = authorService;
 			_logger = logger;
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> Index()
+		[Route("Post/{authorId}")]
+		public IActionResult Index(string authorId)
 		{
-			var posts = await _postService.GetAll();
+			var posts = _postService.GetPostsByAuthorId(authorId);
+			ViewData["authorId"] = authorId;
 			return View(posts);
 		}
 
 		[HttpGet]
 		public IActionResult Create()
 		{
-			var post = new PostDTO() { AuthorId = _authorService.GetById(new Guid("1869811F-DD39-4C6B-B74F-2452C2848578")).Id };
-			ViewBag.Tags = _tagService.GetAll().Result;
+			var post = new PostDTO() { AuthorId = "1869811F-DD39-4C6B-B74F-2452C2848578" };
+			ViewBag.Tags = _tagService.GetAll();
 			return View(post);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public IActionResult Create(PostDTO post, Guid[] selectedTags)
+		public IActionResult Create(PostDTO post, string[] selectedTags)
 		{
 			if (ModelState.IsValid)
 			{
-				post.Tags.AddRange(_tagService.GetAll().Result.Where(x => selectedTags.Contains(x.Id)).Select(x => x));
+				//post.Tags.AddRange(_tagService.GetAll().Where(x => selectedTags.Contains(x.Id)).Select(x => x));
+				post.TagIds = selectedTags;
 				_postService.Create(post);
 				return RedirectToAction("Index");
 			}

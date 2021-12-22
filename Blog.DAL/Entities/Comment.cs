@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Blog.DAL.Entities
 {
@@ -11,6 +12,7 @@ namespace Blog.DAL.Entities
 		/// <summary>
 		/// внешний ключ
 		/// </summary>
+		[MaxLength(36)]
 		public string AuthorId { get; set; }
 
 		/// <summary>
@@ -21,7 +23,8 @@ namespace Blog.DAL.Entities
 		/// <summary>
 		/// внешний ключ
 		/// </summary>
-		public Guid PostId { get; set; }
+		[MaxLength(36)]
+		public string PostId { get; set; }
 		/// <summary>
 		/// навигационное свойство - комментарий относится к конкретной статье
 		/// </summary>

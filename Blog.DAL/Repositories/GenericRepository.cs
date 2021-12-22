@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace Blog.DAL.Repositories
 {
@@ -22,34 +21,34 @@ namespace Blog.DAL.Repositories
 			_logger = logger;
 		}
 
-		public virtual Task<IEnumerable<T>> All()
+		public virtual IEnumerable<T> All()
 		{
 			throw new NotImplementedException();
 		}
 
-		public virtual async Task<T> GetById(Guid id)
+		public virtual T GetById(string id)
 		{
-			return await dbSet.FindAsync(id);
+			return dbSet.Find(id);
 		}
 
-		public virtual async Task<bool> Add(T entity)
+		public virtual bool Add(T entity)
 		{
-			await dbSet.AddAsync(entity);
+			dbSet.Add(entity);
 			return true;
 		}
 
-		public virtual Task<bool> Delete(Guid id)
+		public virtual bool Delete(string id)
 		{
 			throw new NotImplementedException();
 		}
-		public virtual Task<bool> Update(T entity)
+		public virtual bool Update(T entity)
 		{
 			throw new NotImplementedException();
 		}
 
-		public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate)
+		public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
 		{
-			return await dbSet.Where(predicate).ToListAsync();
+			return dbSet.Where(predicate).ToList();
 		}
 	}
 }

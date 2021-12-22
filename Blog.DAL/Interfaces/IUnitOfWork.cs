@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace Blog.DAL.Interfaces
+﻿namespace Blog.DAL.Interfaces
 {
 	public interface IUnitOfWork
 	{
@@ -10,6 +7,6 @@ namespace Blog.DAL.Interfaces
 		ICommentRepository Comments { get; }
 		ITagRepository Tags { get; }
 
-		Task CommitAsync();
+		void Commit();
 	}
 }

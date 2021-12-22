@@ -7,20 +7,11 @@ namespace Blog.BLL.DTO
 	public class TagDTO
 	{
 		[Key]
-		public Guid Id { get; set; }
+		public string Id { get; set; }
 
 		[DisplayName("наименование")]
 		[Required]
 		[MaxLength(20)]
 		public string Name { get; set; }
-
-
-		public TagDTO() {}
-
-		public TagDTO(Guid id, string name)
-		{
-			Id = id;
-			Name = name;
-		}
 	}
 }

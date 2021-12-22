@@ -3,14 +3,16 @@ using System;
 using Blog.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog.DAL.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    partial class BlogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211216170648_d5")]
+    partial class d5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,7 +85,6 @@ namespace Blog.DAL.Migrations
             modelBuilder.Entity("Blog.DAL.Entities.Author", b =>
                 {
                     b.Property<string>("Id")
-                        .HasMaxLength(36)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ApplicationUserId")
@@ -108,11 +109,9 @@ namespace Blog.DAL.Migrations
             modelBuilder.Entity("Blog.DAL.Entities.Comment", b =>
                 {
                     b.Property<string>("Id")
-                        .HasMaxLength(36)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AuthorId")
-                        .HasMaxLength(36)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Content")
@@ -125,7 +124,6 @@ namespace Blog.DAL.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PostId")
-                        .HasMaxLength(36)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -140,11 +138,9 @@ namespace Blog.DAL.Migrations
             modelBuilder.Entity("Blog.DAL.Entities.Post", b =>
                 {
                     b.Property<string>("Id")
-                        .HasMaxLength(36)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AuthorId")
-                        .HasMaxLength(36)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Context")
@@ -166,7 +162,6 @@ namespace Blog.DAL.Migrations
             modelBuilder.Entity("Blog.DAL.Entities.Tag", b =>
                 {
                     b.Property<string>("Id")
-                        .HasMaxLength(36)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")

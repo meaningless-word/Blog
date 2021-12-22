@@ -3,9 +3,7 @@ using Blog.BLL.DTO;
 using Blog.BLL.Interfaces;
 using Blog.DAL.Entities;
 using Blog.DAL.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Blog.BLL.Services
 {
@@ -20,9 +18,9 @@ namespace Blog.BLL.Services
 			_mapper = mapper;
 		}
 			
-		public async Task<IEnumerable<TagDTO>> GetAll()
+		public IEnumerable<TagDTO> GetAll()
 		{
-			var tags = await _unitOfWork.Tags.All();
+			var tags = _unitOfWork.Tags.All();
 			return _mapper.Map<IEnumerable<Tag>, IEnumerable<TagDTO>>(tags);
 		}
 
@@ -30,10 +28,10 @@ namespace Blog.BLL.Services
 		{
 			var _tag = _mapper.Map<TagDTO, Tag>(tag);
 			_unitOfWork.Tags.Add(_tag);
-			_unitOfWork.CommitAsync();
+			_unitOfWork.Commit();
 		}
 
-		public bool Delete(Guid id)
+		public bool Delete(string id)
 		{
 			var tag = _unitOfWork.Tags.GetById(id);
 
@@ -43,15 +41,29 @@ namespace Blog.BLL.Services
 			}
 
 			var result = _unitOfWork.Tags.Delete(id);
-			_unitOfWork.CommitAsync();
-			return result.Result;
+			_unitOfWork.Commit();
+			return result;
 		}
 
-		public TagDTO GetById(Guid id)
+		public TagDTO GetById(string id)
 		{
 			var tag = _unitOfWork.Tags.GetById(id);
-			return _mapper.Map<Tag, TagDTO>(tag.Result);
+			return _mapper.Map<Tag, TagDTO>(tag);
 		}
 
+		public bool Update(TagDTO tag)
+		{
+			var _tag = _unitOfWork.Tags.GetById(tag.Id);
+
+			if (_tag == null)
+			{
+				return false;
+			}
+
+			_tag.Name = tag.Name;
+			var result = _unitOfWork.Tags.Update(_tag);
+			_unitOfWork.Commit();
+			return result;
+		}
 	}
 }

@@ -5,7 +5,7 @@ namespace Blog.BLL.DTO
 {
 	public class AuthorDTO
 	{
-		public Guid Id { get; set; }
+		public string Id { get; set; }
 
 		[Required(ErrorMessage = "Не указан ник")]
 		[MaxLength(30)]
@@ -18,14 +18,5 @@ namespace Blog.BLL.DTO
 		/// количество комментариев
 		/// </summary>
 		public int Comments { get; set; }
-
-
-		public AuthorDTO() {}
-
-		public AuthorDTO(Guid id, string nickName)
-		{
-			Id = id;
-			NickName = nickName;
-		}
 	}
 }
