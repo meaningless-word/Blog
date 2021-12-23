@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Blog.DAL.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    [Migration("20211206175845_d2")]
-    partial class d2
+    [Migration("20211223175450_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,7 +18,7 @@ namespace Blog.DAL.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.12");
 
-            modelBuilder.Entity("Blog.DAL.Entities.Author", b =>
+            modelBuilder.Entity("Blog.DAL.Entities.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -41,11 +41,6 @@ namespace Blog.DAL.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("NickName")
-                        .IsRequired()
-                        .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedEmail")
@@ -87,13 +82,39 @@ namespace Blog.DAL.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Blog.DAL.Entities.Author", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasMaxLength(36)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NickName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
+
+                    b.HasIndex("NickName")
+                        .IsUnique();
+
+                    b.ToTable("Authors");
+                });
+
             modelBuilder.Entity("Blog.DAL.Entities.Comment", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
+                        .HasMaxLength(36)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AuthorId")
+                        .HasMaxLength(36)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Content")
@@ -105,7 +126,8 @@ namespace Blog.DAL.Migrations
                     b.Property<DateTime>("Modified")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("PostId")
+                    b.Property<string>("PostId")
+                        .HasMaxLength(36)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -119,11 +141,12 @@ namespace Blog.DAL.Migrations
 
             modelBuilder.Entity("Blog.DAL.Entities.Post", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
+                        .HasMaxLength(36)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("AuthorId")
+                        .HasMaxLength(36)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Context")
@@ -144,8 +167,8 @@ namespace Blog.DAL.Migrations
 
             modelBuilder.Entity("Blog.DAL.Entities.Tag", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("Id")
+                        .HasMaxLength(36)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -153,6 +176,9 @@ namespace Blog.DAL.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("Tags");
                 });
@@ -287,10 +313,10 @@ namespace Blog.DAL.Migrations
 
             modelBuilder.Entity("PostTag", b =>
                 {
-                    b.Property<Guid>("PostsId")
+                    b.Property<string>("PostsId")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("TagsId")
+                    b.Property<string>("TagsId")
                         .HasColumnType("TEXT");
 
                     b.HasKey("PostsId", "TagsId");
@@ -298,6 +324,15 @@ namespace Blog.DAL.Migrations
                     b.HasIndex("TagsId");
 
                     b.ToTable("PostTag");
+                });
+
+            modelBuilder.Entity("Blog.DAL.Entities.Author", b =>
+                {
+                    b.HasOne("Blog.DAL.Entities.ApplicationUser", "ApplicationUser")
+                        .WithOne("Author")
+                        .HasForeignKey("Blog.DAL.Entities.Author", "ApplicationUserId");
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Blog.DAL.Entities.Comment", b =>
@@ -308,9 +343,7 @@ namespace Blog.DAL.Migrations
 
                     b.HasOne("Blog.DAL.Entities.Post", "Post")
                         .WithMany("Comments")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PostId");
 
                     b.Navigation("Author");
 
@@ -337,7 +370,7 @@ namespace Blog.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Blog.DAL.Entities.Author", null)
+                    b.HasOne("Blog.DAL.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -346,7 +379,7 @@ namespace Blog.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Blog.DAL.Entities.Author", null)
+                    b.HasOne("Blog.DAL.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -361,7 +394,7 @@ namespace Blog.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Blog.DAL.Entities.Author", null)
+                    b.HasOne("Blog.DAL.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -370,7 +403,7 @@ namespace Blog.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Blog.DAL.Entities.Author", null)
+                    b.HasOne("Blog.DAL.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -390,6 +423,11 @@ namespace Blog.DAL.Migrations
                         .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Blog.DAL.Entities.ApplicationUser", b =>
+                {
+                    b.Navigation("Author");
                 });
 
             modelBuilder.Entity("Blog.DAL.Entities.Author", b =>

@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Blog.DAL.Entities
 {
-	public class Post : BaseEntity
+	public class Post
 	{
+		[Key]
+		[MaxLength(36)]
+		public string Id { get; set; }
 		public string Context { get; set; }
 		public DateTime Created { get; set; }
 		public DateTime Modified { get; set; }
 
 		[MaxLength(36)]
+		[ForeignKey("Author")]
 		public string AuthorId { get; set; }
 
 		/// <summary>

@@ -1,5 +1,6 @@
 ﻿using Blog.DAL.Entities;
 using Blog.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,17 @@ namespace Blog.DAL.Repositories
 		{
 		}
 
+		public override bool Add(Author entity)
+		{
+			entity.Id = Guid.NewGuid().ToString().ToUpper();
+			return base.Add(entity);
+		}
+
 		public override IEnumerable<Author> All()
 		{
 			try
 			{
-				return dbSet.ToList();
+				return dbSet.Include("Posts").Include("Comments").ToList();
 			}
 			catch (Exception ex)
 			{

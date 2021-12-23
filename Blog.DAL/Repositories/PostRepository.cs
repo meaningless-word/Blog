@@ -13,6 +13,12 @@ namespace Blog.DAL.Repositories
 		{
 		}
 
+		public override bool Add(Post entity)
+		{
+			entity.Id = Guid.NewGuid().ToString().ToUpper();
+			return base.Add(entity);
+		}
+
 		public override IEnumerable<Post> All()
 		{
 			try

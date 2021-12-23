@@ -6,8 +6,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Blog.DAL.Entities
 {
 	[Index(nameof(NickName), IsUnique = true)]
-	public class Author : BaseEntity
+	public class Author
 	{
+		[Key]
+		[MaxLength(36)]
+		public string Id { get; set; }
+
 		[Required]
 		[MaxLength(30)]
 		public string NickName { get; set; }

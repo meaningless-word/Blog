@@ -21,7 +21,7 @@ namespace Blog.Controllers
 		}
 
 		[HttpGet]
-		[Route("Post/{authorId}")]
+		[Route("Post/Index/{authorId}")]
 		public IActionResult Index(string authorId)
 		{
 			var posts = _postService.GetPostsByAuthorId(authorId);
@@ -30,9 +30,10 @@ namespace Blog.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Create()
+		[Route("Post/Create/{authorId}")]
+		public IActionResult Create(string authorId)
 		{
-			var post = new PostDTO() { AuthorId = "1869811F-DD39-4C6B-B74F-2452C2848578" };
+			var post = new PostDTO() { AuthorId = authorId };
 			ViewBag.Tags = _tagService.GetAll();
 			return View(post);
 		}
@@ -43,10 +44,9 @@ namespace Blog.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				//post.Tags.AddRange(_tagService.GetAll().Where(x => selectedTags.Contains(x.Id)).Select(x => x));
 				post.TagIds = selectedTags;
 				_postService.Create(post);
-				return RedirectToAction("Index");
+				return RedirectToAction("Index", "Post", new { authorId = post.AuthorId });
 			}
 			return View(post);
 		}

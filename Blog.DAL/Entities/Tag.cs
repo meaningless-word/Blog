@@ -1,10 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Blog.DAL.Entities
 {
-	public class Tag : BaseEntity
+	[Index(nameof(Name), IsUnique = true)]
+	public class Tag
 	{
+		[Key]
+		[MaxLength(36)]
+		public string Id { get; set; }
+
 		[MaxLength(20)]
 		public string Name { get; set; }
 
