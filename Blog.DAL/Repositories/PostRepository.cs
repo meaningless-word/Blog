@@ -1,5 +1,6 @@
 ﻿using Blog.DAL.Entities;
 using Blog.DAL.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Blog.DAL.Repositories
 		{
 			try
 			{
-				return dbSet.ToList();
+				return dbSet.Include("Comments").Include("Tags").ToList();
 			}
 			catch (Exception ex)
 			{
