@@ -1,5 +1,7 @@
 ﻿using Blog.BLL.DTO;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Blog.BLL.Interfaces
 {

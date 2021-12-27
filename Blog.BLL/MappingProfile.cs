@@ -26,7 +26,7 @@ namespace Blog.BLL
 				.ForMember(a => a.Tags, map => map.MapFrom(src => src.Tags));
 			CreateMap<PostDTO, Post>()
 				.ForMember(a => a.Id, map => map.MapFrom(src => src.Id))
-				.ForMember(a => a.Tags, map => map.MapFrom(src => new List<Tag>()));
+				.ForMember(a => a.Tags, map => map.MapFrom(src => src.Tags));
 			CreateMap<Comment, CommentDTO>();
 			CreateMap<CommentDTO, Comment>();
 		}

@@ -2,8 +2,6 @@
 using Blog.BLL.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Linq;
 
 namespace Blog.Controllers
 {
