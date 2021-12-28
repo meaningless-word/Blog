@@ -46,7 +46,7 @@ namespace Blog.DAL.Repositories
 			throw new NotImplementedException();
 		}
 
-		public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
+		public virtual IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
 		{
 			return dbSet.Where(predicate).ToList();
 		}

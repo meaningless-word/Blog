@@ -1,13 +1,51 @@
 ﻿@model IEnumerable<Blog.BLL.DTO.PostDTO>
 
 <div class="container p-3">
-    <div class="row pt-4">
-        <div class="col-6">
-            <h2 class="text-primary">список публикаций автора</h2>
-        </div>
-        <div class="col-6 text-right">
-            <a asp-controller="Post" asp-action="Create" asp-route-authorId="@ViewData["authorId"]" class="btn btn-primry">новая публикация</a>
-        </div>
+  <div class="row pt-4">
+    <div class="col-6">
+      <h2 class="text-primary">список публикаций автора</h2>
     </div>
-    <br/>
+    <div class="col-6 text-right">
+      <a asp-controller="Post" asp-action="Create" asp-route-authorId="@ViewData["authorId"]" class="btn btn-primry">новая публикация</a>
+    </div>
+  </div>
+  <br />
+  @if (Model.Count() > 0)
+  {
+    <table class="table table-bordered table-striped" style="width:100%">
+      <thead>
+        <tr>
+          <th>публикация</th>
+          <th>комментарии</th>
+          <th>кнопки</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var item in Model)
+        {
+          <tr>
+            <td>
+              @item.Context
+              <br />
+              @foreach (var t in item.Tags)
+              {
+                <small>@t.Name</small>
+              }
+            </td>
+            <td>@item.Comments.Count</td>
+            <td>
+              <div class="w-100 btn-group" role="group">
+                <a asp-controller="Tag" asp-action="Update" asp-route-Id="@item.Id" class="btn btn-primary mx-1">Update</a>
+                <a asp-controller="Tag" asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger mx-1">Delete</a>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+  else
+  {
+    <p>ничего нет...</p>
+  }
 </div>

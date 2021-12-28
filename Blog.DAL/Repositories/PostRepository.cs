@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Blog.DAL.Repositories
 {
@@ -64,6 +65,17 @@ namespace Blog.DAL.Repositories
 				_logger.LogError(ex, "{R} Update function error", typeof(PostRepository));
 				return false;
 			}
+		}
+
+		public override IEnumerable<Post> Find(Expression<Func<Post, bool>> predicate)
+		{
+			var posts = base.Find(predicate);
+			foreach(Post p in posts)
+			{
+				_context.Entry(p).Collection(x => x.Comments).Load();
+				_context.Entry(p).Collection(x => x.Tags).Load();
+			}
+			return posts;
 		}
 	}
 }
